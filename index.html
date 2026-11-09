@@ -3,53 +3,437 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>thesolution | Restorāna vadības konsultācijas</title>
-<meta name="description" content="thesolution palīdz restorāna vadītājam organizēt ikdienas darbu, komandas komunikāciju un viesu apkalpošanu.">
+<title>thesolution | Restorānu vadības pakalpojumi</title>
+<meta name="description" content="thesolution palīdz restorāniem sakārtot izmaksas, komandu, piegādes un viesu apkalpošanu. Pieteikties konsultācijai ir viegli.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com"></script>
 <script>
-tailwind.config = { theme: { extend: { colors: { accent: '#f59e0b' } } } }
+tailwind.config = {
+  theme: { extend: {
+    fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] },
+    colors: { accent: { DEFAULT: '#f59e0b', dark: '#d97706' } }
+  } }
+}
 </script>
 <style>
 html{scroll-behavior:smooth;scroll-padding-top:80px}
-.hero-bg{
-  background-image:
-    linear-gradient(to bottom, rgba(10,10,10,.65), rgba(10,10,10,.92)),
-    url('hero.jpg');
-  background-size:cover;background-position:center;background-color:#171717;
-}
-.band-bg{
-  background-image:
-    linear-gradient(rgba(10,10,10,.82), rgba(10,10,10,.88)),
-    url('kitchen2.jpg');
-  background-size:cover;background-position:center;background-attachment:fixed;background-color:#171717;
-}
-@media (max-width:768px){.band-bg{background-attachment:scroll}}
-.glass{background:rgba(255,255,255,.06);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12)}
-.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
 .reveal.show{opacity:1;transform:none}
-input,select,textarea{color-scheme:dark}
+@media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+details summary::-webkit-details-marker{display:none}
+details[open] .chev{transform:rotate(180deg)}
 </style>
 </head>
-<body class="bg-neutral-950 text-neutral-100 antialiased font-sans">
+<body class="bg-white text-slate-800 font-sans antialiased">
+
+<!-- Kopīgais anime varonis (ilustrācijas detaļas) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <g id="bust">
+      <ellipse cx="0" cy="-12" rx="66" ry="62" fill="currentColor"/>
+      <path d="M-85 250Q-85 95 -32 72Q0 96 32 72Q85 95 85 250Z" fill="#fff" stroke="#e2e8f0" stroke-width="3"/>
+      <g fill="#cbd5e1"><circle cx="-12" cy="120" r="5"/><circle cx="-12" cy="155" r="5"/><circle cx="12" cy="120" r="5"/><circle cx="12" cy="155" r="5"/></g>
+      <rect x="-12" y="48" width="24" height="30" rx="8" fill="#fbd5bd"/>
+      <path d="M-34 68Q0 94 34 68L38 90Q0 116 -38 90Z" fill="#e5484d"/>
+      <circle r="55" fill="#fde2cf"/>
+      <path d="M-55 -10Q-50 -55 0 -57Q50 -55 55 -10Q35 -35 18 -25Q5 -45 -10 -25Q-32 -37 -55 -10Z" fill="currentColor"/>
+      <path d="M-56 -20Q-70 25 -50 45Q-55 5 -47 -18Z" fill="currentColor"/>
+      <path d="M56 -20Q70 25 50 45Q55 5 47 -18Z" fill="currentColor"/>
+      <g stroke="#e2e8f0" stroke-width="3" fill="#fff">
+        <circle cx="-34" cy="-92" r="27"/><circle cx="34" cy="-92" r="27"/><circle cx="0" cy="-108" r="33"/>
+        <rect x="-48" y="-86" width="96" height="30" rx="8"/>
+      </g>
+      <g transform="translate(-22 8)">
+        <ellipse rx="10" ry="14" fill="#fff"/><ellipse cy="2" rx="7.5" ry="11" style="fill:var(--iris,#4a90d9)"/>
+        <ellipse cy="3" rx="4" ry="7" fill="#1e2a44"/><circle cx="3" cy="-3" r="3.5" fill="#fff"/><circle cx="-3" cy="6" r="1.6" fill="#fff"/>
+        <path d="M-11 -6Q0 -17 11 -6" fill="none" stroke="#2b1d38" stroke-width="3.5" stroke-linecap="round"/>
+      </g>
+      <g transform="translate(22 8)">
+        <ellipse rx="10" ry="14" fill="#fff"/><ellipse cy="2" rx="7.5" ry="11" style="fill:var(--iris,#4a90d9)"/>
+        <ellipse cy="3" rx="4" ry="7" fill="#1e2a44"/><circle cx="3" cy="-3" r="3.5" fill="#fff"/><circle cx="-3" cy="6" r="1.6" fill="#fff"/>
+        <path d="M-11 -6Q0 -17 11 -6" fill="none" stroke="#2b1d38" stroke-width="3.5" stroke-linecap="round"/>
+      </g>
+      <ellipse cx="-36" cy="30" rx="9" ry="5" fill="#ff8fa3" opacity=".55"/>
+      <ellipse cx="36" cy="30" rx="9" ry="5" fill="#ff8fa3" opacity=".55"/>
+      <path d="M-8 33Q0 43 8 33Z" fill="#b5524a"/>
+    </g>
+    <g id="pony"><path d="M50 -45Q108 -35 96 40Q84 -2 50 -12Z" fill="currentColor"/></g>
+    <pattern id="tile" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 0H40V40" fill="none" stroke="#f3dcc0" stroke-width="2"/></pattern>
+    <pattern id="tile2" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M0 0H40V40" fill="none" stroke="#2c3c55" stroke-width="2"/></pattern>
+    <clipPath id="clipHero"><rect width="600" height="500" rx="28"/></clipPath>
+    <clipPath id="clipBand"><rect width="900" height="360" rx="24"/></clipPath>
+  </defs>
+</svg>
 
 <!-- Navigācija -->
-<header class="fixed top-0 inset-x-0 z-30 bg-neutral-950/70 backdrop-blur border-b border-white/10">
+<header class="fixed top-0 inset-x-0 z-40 bg-white/85 backdrop-blur border-b border-slate-200">
   <div class="max-w-6xl mx-auto px-5 h-16 flex items-center justify-between">
-    <a href="#top" class="text-xl font-extrabold tracking-tight">the<span class="text-accent">solution</span></a>
-    <nav class="hidden md:flex gap-7 text-sm font-medium text-neutral-300">
-      <a href="#problema" class="hover:text-white">Problēma</a>
-      <a href="#risinajums" class="hover:text-white">Risinājums</a>
-      <a href="#pieredze" class="hover:text-white">Pieredze</a>
-      <a href="#kontakti" class="hover:text-white">Kontakti</a>
+    <a href="#top" class="text-xl font-extrabold tracking-tight">the<span class="text-accent-dark">solution</span></a>
+    <nav class="hidden md:flex gap-8 text-sm font-medium text-slate-600">
+      <a href="#pakalpojumi" class="hover:text-slate-900">Pakalpojumi</a>
+      <a href="#process" class="hover:text-slate-900">Kā strādāju</a>
+      <a href="#pakotnes" class="hover:text-slate-900">Pakotnes</a>
+      <a href="#par-mani" class="hover:text-slate-900">Par mani</a>
+      <a href="#bvj" class="hover:text-slate-900">BUJ</a>
     </nav>
-    <a href="#anketa" class="bg-accent text-black text-sm font-bold px-5 py-2 rounded-full hover:brightness-110">Rezervēt konsultāciju</a>
+    <div class="flex items-center gap-3">
+      <a href="#anketa" class="hidden sm:inline-block bg-slate-900 text-white text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-slate-700">Pieteikties konsultācijai</a>
+      <button id="menuBtn" class="md:hidden p-2 rounded-lg border border-slate-200" aria-label="Izvēlne" aria-expanded="false">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-5 py-4 space-y-3 text-sm font-medium">
+    <a href="#pakalpojumi" class="block">Pakalpojumi</a>
+    <a href="#process" class="block">Kā strādāju</a>
+    <a href="#pakotnes" class="block">Pakotnes</a>
+    <a href="#par-mani" class="block">Par mani</a>
+    <a href="#bvj" class="block">BUJ</a>
+    <a href="#anketa" class="block bg-slate-900 text-white text-center font-semibold px-5 py-3 rounded-full">Pieteikties konsultācijai</a>
   </div>
 </header>
 
 <main id="top">
 
 <!-- Hero -->
-<section class="hero-bg min-h-screen flex items-center pt-16">
-  <div class="max-w-6xl mx-auto px-5 py-24">
-    <p class="inline-block text-xs font-bold uppercase tracking-[.25em] text-accent mb-5">Restorāna vadības konsultācijas</p>
-    <h1 class="text-5xl
+<section class="pt-28 pb-16 md:pt-36 md:pb-24 bg-gradient-to-b from-amber-50 to-white">
+  <div class="max-w-6xl mx-auto px-5 grid md:grid-cols-2 gap-12 items-center">
+    <div>
+      <p class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-accent-dark bg-amber-100 px-3 py-1.5 rounded-full mb-6">Restorānu vadības pakalpojumi</p>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-[1.05]">Restorāns, kas strādā <span class="text-accent-dark">raiti</span>, nevis uz steigas.</h1>
+      <p class="mt-6 text-lg text-slate-600 max-w-lg">Palīdzu restorānu vadītājiem sakārtot izmaksas, komandas darbu, piegādes un viesu apkalpošanu, lai serviss ir mierīgāks un rezultāts skaidrāks.</p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="#anketa" class="bg-accent text-slate-900 font-bold px-7 py-4 rounded-full hover:bg-accent-dark hover:text-white transition">Piesakies 10 minūšu sarunai</a>
+        <a href="#pakalpojumi" class="border border-slate-300 font-semibold px-7 py-4 rounded-full hover:bg-slate-50">Skatīt pakalpojumus</a>
+      </div>
+      <ul class="mt-8 grid grid-cols-2 gap-x-6 gap-y-2 text-sm text-slate-600 max-w-md">
+        <li>✓ Pirmā saruna bez saistībām</li>
+        <li>✓ Individuāls risinājums</li>
+        <li>✓ Praktiski, nevis teorētiski</li>
+        <li>✓ Zāle un virtuve kopā</li>
+      </ul>
+    </div>
+
+    <!-- Ilustrācija: šefpavārs virtuvē -->
+    <div>
+      <svg viewBox="0 0 600 500" class="w-full h-auto drop-shadow-2xl" role="img" aria-label="Anime stila šefpavārs virtuvē ar kausu rokā">
+        <g clip-path="url(#clipHero)">
+          <rect width="600" height="500" fill="#fff4e6"/>
+          <rect width="600" height="374" fill="url(#tile)"/>
+          <!-- logs -->
+          <rect x="50" y="50" width="150" height="130" rx="10" fill="#bfe3ff" stroke="#8a5a3c" stroke-width="8"/>
+          <path d="M125 50V180M50 115H200" stroke="#8a5a3c" stroke-width="6"/>
+          <circle cx="92" cy="90" r="16" fill="#fff" opacity=".75"/>
+          <!-- plaukts ar burkām -->
+          <rect x="50" y="228" width="150" height="9" rx="3" fill="#8a5a3c"/>
+          <rect x="62" y="194" width="30" height="34" rx="6" fill="#f87171"/><rect x="100" y="200" width="30" height="28" rx="6" fill="#facc15"/><rect x="138" y="190" width="34" height="38" rx="6" fill="#86efac"/>
+          <!-- piekarināmie panni -->
+          <path d="M390 36H590" stroke="#6b7280" stroke-width="5" stroke-linecap="round"/>
+          <g stroke="#4b5563" stroke-width="7" stroke-linecap="round"><path d="M430 36V68M490 36V66M550 36V70"/></g>
+          <g fill="#4b5563"><circle cx="430" cy="92" r="24"/><circle cx="490" cy="90" r="20"/><circle cx="550" cy="94" r="26"/></g>
+          <g fill="#6b7280"><circle cx="430" cy="92" r="15"/><circle cx="490" cy="90" r="12"/><circle cx="550" cy="94" r="17"/></g>
+          <!-- zvaigznītes -->
+          <g fill="#f59e0b"><path d="M0-10Q2-2 10 0Q2 2 0 10Q-2 2-10 0Q-2-2 0-10Z" transform="translate(230 120)"/><path d="M0-10Q2-2 10 0Q2 2 0 10Q-2 2-10 0Q-2-2 0-10Z" transform="translate(385 200) scale(.7)"/><path d="M0-10Q2-2 10 0Q2 2 0 10Q-2 2-10 0Q-2-2 0-10Z" transform="translate(160 150) scale(.6)"/></g>
+          <!-- šefpavārs -->
+          <g transform="translate(300 185)"><use href="#bust" style="color:#3b2a4a"/></g>
+          <!-- letiņa -->
+          <rect y="350" width="600" height="150" fill="#8a5a3c"/>
+          <rect y="350" width="600" height="22" fill="#c58b5c"/>
+          <g fill="none" stroke="#6e452c" stroke-width="4"><rect x="30" y="392" width="160" height="90" rx="8"/><rect x="220" y="392" width="160" height="90" rx="8"/><rect x="410" y="392" width="160" height="90" rx="8"/></g>
+          <g fill="#e0b07a"><circle cx="175" cy="437" r="5"/><circle cx="235" cy="437" r="5"/><circle cx="395" cy="437" r="5"/><circle cx="425" cy="437" r="5"/></g>
+          <!-- dēlītis ar tomātiem -->
+          <rect x="50" y="336" width="130" height="14" rx="4" fill="#e0b07a"/>
+          <circle cx="80" cy="322" r="14" fill="#ef4444"/><circle cx="108" cy="326" r="12" fill="#f87171"/><path d="M76 310l4 4 4-4" stroke="#16a34a" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- katls -->
+          <rect x="470" y="302" width="100" height="50" rx="10" fill="#8892a0"/>
+          <path d="M464 302Q520 272 576 302Z" fill="#a5afbb"/><circle cx="520" cy="282" r="5" fill="#6b7280"/>
+          <g fill="none" stroke="#d6c4ae" stroke-width="4" stroke-linecap="round"><path d="M500 262Q490 246 502 234Q514 222 502 208"/><path d="M540 262Q530 246 542 234Q554 222 542 208"/></g>
+          <!-- rokas -->
+          <path d="M238 292Q200 325 196 348L226 360Q242 332 254 308Z" fill="#fff" stroke="#e2e8f0" stroke-width="3"/>
+          <circle cx="206" cy="352" r="13" fill="#fde2cf"/>
+          <path d="M362 290Q405 280 440 240L462 258Q425 305 378 325Z" fill="#fff" stroke="#e2e8f0" stroke-width="3"/>
+          <path d="M452 245L505 168" stroke="#6b7280" stroke-width="6" stroke-linecap="round"/>
+          <ellipse cx="510" cy="160" rx="17" ry="12" transform="rotate(-35 510 160)" fill="#9aa5b1"/>
+          <circle cx="452" cy="245" r="13" fill="#fde2cf"/>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Skaitļi -->
+<section class="border-y border-slate-200 bg-white">
+  <div class="max-w-6xl mx-auto px-5 py-8 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+    <div><div class="text-3xl font-black">10 min</div><div class="text-sm text-slate-500">pirmā saruna</div></div>
+    <div><div class="text-3xl font-black">Bez saistībām</div><div class="text-sm text-slate-500">sākotnējā konsultācija</div></div>
+    <div><div class="text-3xl font-black">1:1</div><div class="text-sm text-slate-500">individuāls darbs</div></div>
+    <div><div class="text-3xl font-black">Zāle + virtuve</div><div class="text-sm text-slate-500">viena komanda</div></div>
+  </div>
+</section>
+
+<!-- Pakalpojumi -->
+<section id="pakalpojumi" class="py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="reveal max-w-2xl mb-12">
+      <p class="text-accent-dark text-xs font-bold uppercase tracking-widest mb-3">Pakalpojumi</p>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-4">Viss, kas nepieciešams restorāna ikdienas vadībai</h2>
+      <p class="text-slate-600 text-lg">Katrs restorāns ir atšķirīgs. Sākam ar to, kas jums šobrīd rada visvairāk problēmu.</p>
+    </div>
+    <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <div class="reveal rounded-3xl border border-slate-200 p-7 hover:shadow-lg hover:-translate-y-1 transition">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 grid place-items-center text-2xl mb-4">💶</div>
+        <h3 class="font-bold text-lg mb-2">Izmaksu kontrole</h3>
+        <p class="text-slate-600">Produktu pašizmaksa, atkritumu samazināšana un skaidrs pārskats par to, kur paliek nauda.</p>
+      </div>
+      <div class="reveal rounded-3xl border border-slate-200 p-7 hover:shadow-lg hover:-translate-y-1 transition">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 grid place-items-center text-2xl mb-4">📖</div>
+        <h3 class="font-bold text-lg mb-2">Ēdienkartes analīze</h3>
+        <p class="text-slate-600">Kuri ēdieni nes peļņu un kuri tikai aizņem vietu kartē. Cenu un porciju sakārtošana.</p>
+      </div>
+      <div class="reveal rounded-3xl border border-slate-200 p-7 hover:shadow-lg hover:-translate-y-1 transition">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 grid place-items-center text-2xl mb-4">🗓️</div>
+        <h3 class="font-bold text-lg mb-2">Personāla plānošana</h3>
+        <p class="text-slate-600">Maiņu grafiki, kas atbilst noslodzei, un skaidrs pienākumu sadalījums katrā maiņā.</p>
+      </div>
+      <div class="reveal rounded-3xl border border-slate-200 p-7 hover:shadow-lg hover:-translate-y-1 transition">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 grid place-items-center text-2xl mb-4">🚚</div>
+        <h3 class="font-bold text-lg mb-2">Piegādes un krājumi</h3>
+        <p class="text-slate-600">Pasūtījumu ritms, piegādātāju salīdzināšana un krājumu uzskaite bez liekiem atlikumiem.</p>
+      </div>
+      <div class="reveal rounded-3xl border border-slate-200 p-7 hover:shadow-lg hover:-translate-y-1 transition">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 grid place-items-center text-2xl mb-4">🍽️</div>
+        <h3 class="font-bold text-lg mb-2">Viesu apkalpošana</h3>
+        <p class="text-slate-600">Servisa standarti, atsauksmju apkopošana un praktiski soļi, kā viesi atgriežas.</p>
+      </div>
+      <div class="reveal rounded-3xl border border-slate-200 p-7 hover:shadow-lg hover:-translate-y-1 transition">
+        <div class="w-12 h-12 rounded-2xl bg-amber-100 grid place-items-center text-2xl mb-4">✅</div>
+        <h3 class="font-bold text-lg mb-2">Darba kārtība un apmācība</h3>
+        <p class="text-slate-600">Kontrolsaraksti, instrukcijas un jauno darbinieku ievadapmācība, lai nekas nebūtu tikai vadītāja galvā.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Tumšā sadaļa ar virtuves ilustrāciju -->
+<section class="bg-slate-900 text-white py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="reveal max-w-2xl mb-10">
+      <p class="text-accent text-xs font-bold uppercase tracking-widest mb-3">Komandas darbs</p>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-4">Virtuve un zāle kā viena komanda</h2>
+      <p class="text-slate-300 text-lg">Lielākā daļa problēmu rodas starp virtuvi un zāli. Palīdzu ieviest vienkāršu saziņu, skaidrus pasūtījumu ceļus un mierīgu servisa ritmu.</p>
+    </div>
+    <div class="reveal">
+      <svg viewBox="0 0 900 360" class="w-full h-auto rounded-3xl" role="img" aria-label="Divi anime stila pavāri strādā virtuves līnijā">
+        <g clip-path="url(#clipBand)">
+          <rect width="900" height="360" fill="#1e293b"/>
+          <rect width="900" height="360" fill="url(#tile2)"/>
+          <!-- gaismas -->
+          <g fill="#fde68a" opacity=".12"><path d="M120 80L180 80L240 290L60 290Z"/><path d="M420 80L480 80L540 290L360 290Z"/><path d="M720 80L780 80L840 290L660 290Z"/></g>
+          <g stroke="#64748b" stroke-width="3"><path d="M150 0V46M450 0V46M750 0V46"/></g>
+          <g fill="#f59e0b"><path d="M120 82Q120 46 150 46Q180 46 180 82Z"/><path d="M420 82Q420 46 450 46Q480 46 480 82Z"/><path d="M720 82Q720 46 750 46Q780 46 780 82Z"/></g>
+          <!-- čeku stienīte -->
+          <rect x="355" y="110" width="190" height="6" rx="3" fill="#94a3b8"/>
+          <g fill="#fff"><rect x="368" y="116" width="30" height="48" rx="3"/><rect x="408" y="116" width="30" height="38" rx="3"/><rect x="448" y="116" width="30" height="56" rx="3"/><rect x="488" y="116" width="30" height="44" rx="3"/></g>
+          <g stroke="#cbd5e1" stroke-width="2"><path d="M373 126H393M373 134H393M373 142H388M413 126H433M413 134H428M453 126H473M453 134H473M453 142H468M453 150H466M493 126H513M493 134H508"/></g>
+          <!-- pavāri -->
+          <g transform="translate(250 175) scale(.85)"><use href="#bust" style="color:#3b2a4a;--iris:#4a90d9"/></g>
+          <g transform="translate(650 175) scale(.85)"><use href="#pony" style="color:#9a3412"/><use href="#bust" style="color:#9a3412;--iris:#10b981"/></g>
+          <!-- galds -->
+          <rect y="268" width="900" height="92" fill="#475569"/>
+          <rect y="258" width="900" height="16" fill="#94a3b8"/>
+          <!-- katls kreisajā pusē -->
+          <rect x="70" y="222" width="90" height="36" rx="8" fill="#cbd5e1"/>
+          <path d="M64 222Q115 196 166 222Z" fill="#e2e8f0"/><circle cx="115" cy="204" r="5" fill="#94a3b8"/>
+          <g fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" opacity=".6"><path d="M95 186Q86 172 97 162Q108 152 97 140"/><path d="M135 186Q126 172 137 162Q148 152 137 140"/></g>
+          <!-- dēlītis centrā -->
+          <rect x="400" y="246" width="100" height="12" rx="4" fill="#e0b07a"/>
+          <circle cx="425" cy="234" r="12" fill="#ef4444"/><circle cx="452" cy="237" r="10" fill="#f87171"/><circle cx="477" cy="236" r="9" fill="#facc15"/>
+          <!-- panna labajā pusē -->
+          <rect x="775" y="240" width="80" height="14" rx="6" fill="#0f172a"/><rect x="853" y="244" width="38" height="6" rx="3" fill="#0f172a"/>
+          <g fill="none" stroke="#e2e8f0" stroke-width="4" stroke-linecap="round" opacity=".6"><path d="M800 228Q792 214 802 204Q812 194 802 182"/><path d="M830 228Q822 214 832 204Q842 194 832 182"/></g>
+          <!-- zvaigznītes -->
+          <g fill="#f59e0b"><path d="M0-10Q2-2 10 0Q2 2 0 10Q-2 2-10 0Q-2-2 0-10Z" transform="translate(340 200)"/><path d="M0-10Q2-2 10 0Q2 2 0 10Q-2 2-10 0Q-2-2 0-10Z" transform="translate(560 190) scale(.7)"/></g>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- Process -->
+<section id="process" class="py-20 md:py-28">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="reveal max-w-2xl mb-12">
+      <p class="text-accent-dark text-xs font-bold uppercase tracking-widest mb-3">Kā strādāju</p>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-4">Četri soļi līdz skaidrākai ikdienai</h2>
+    </div>
+    <div class="grid gap-6 md:grid-cols-4">
+      <div class="reveal"><div class="text-5xl font-black text-amber-200 mb-2">01</div><h3 class="font-bold text-lg mb-1">Iepazīšanās saruna</h3><p class="text-slate-600">10 minūtēs noskaidrojam, kas jūsu restorānā darbojas un kas traucē.</p></div>
+      <div class="reveal"><div class="text-5xl font-black text-amber-200 mb-2">02</div><h3 class="font-bold text-lg mb-1">Situācijas pārskats</h3><p class="text-slate-600">Apskatām izmaksas, grafikus, piegādes un servisa ritmu.</p></div>
+      <div class="reveal"><div class="text-5xl font-black text-amber-200 mb-2">03</div><h3 class="font-bold text-lg mb-1">Rīcības plāns</h3><p class="text-slate-600">Saņemat īsu plānu ar prioritārajiem soļiem un termiņiem.</p></div>
+      <div class="reveal"><div class="text-5xl font-black text-amber-200 mb-2">04</div><h3 class="font-bold text-lg mb-1">Ieviešana un atbalsts</h3><p class="text-slate-600">Palīdzu ieviest izmaiņas un pārbaudu, vai tās dod rezultātu.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Pakotnes -->
+<section id="pakotnes" class="py-20 md:py-28 bg-amber-50">
+  <div class="max-w-6xl mx-auto px-5">
+    <div class="reveal max-w-2xl mb-12">
+      <p class="text-accent-dark text-xs font-bold uppercase tracking-widest mb-3">Pakotnes</p>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-4">Izvēlieties sev piemērotāko sadarbību</h2>
+    </div>
+    <div class="grid gap-6 md:grid-cols-3 items-stretch">
+      <div class="reveal bg-white rounded-3xl border border-slate-200 p-8 flex flex-col">
+        <h3 class="font-bold text-xl mb-1">Pirmā saruna</h3>
+        <p class="text-slate-500 text-sm mb-5">10 minūtes, bez saistībām</p>
+        <ul class="space-y-2 text-slate-600 mb-8 flex-1"><li>✓ Īss situācijas pārskats</li><li>✓ 2–3 praktiski ieteikumi</li><li>✓ Skaidrs nākamais solis</li></ul>
+        <a href="#anketa" class="text-center border border-slate-300 font-semibold px-6 py-3 rounded-full hover:bg-slate-50">Pieteikties</a>
+      </div>
+      <div class="reveal bg-slate-900 text-white rounded-3xl p-8 flex flex-col shadow-xl md:-translate-y-3">
+        <span class="self-start text-xs font-bold bg-accent text-slate-900 px-3 py-1 rounded-full mb-3">Populārākā</span>
+        <h3 class="font-bold text-xl mb-1">Restorāna audits</h3>
+        <p class="text-slate-400 text-sm mb-5">Cena pēc vienošanās</p>
+        <ul class="space-y-2 text-slate-300 mb-8 flex-1"><li>✓ Izmaksu un ēdienkartes analīze</li><li>✓ Komandas un grafiku pārskats</li><li>✓ Rakstisks rīcības plāns</li></ul>
+        <a href="#anketa" class="text-center bg-accent text-slate-900 font-bold px-6 py-3 rounded-full hover:bg-white">Pieteikties</a>
+      </div>
+      <div class="reveal bg-white rounded-3xl border border-slate-200 p-8 flex flex-col">
+        <h3 class="font-bold text-xl mb-1">Ilgtermiņa atbalsts</h3>
+        <p class="text-slate-500 text-sm mb-5">Cena pēc vienošanās</p>
+        <ul class="space-y-2 text-slate-600 mb-8 flex-1"><li>✓ Regulāras tikšanās</li><li>✓ Izmaiņu ieviešana kopā ar komandu</li><li>✓ Rezultātu uzraudzība</li></ul>
+        <a href="#anketa" class="text-center border border-slate-300 font-semibold px-6 py-3 rounded-full hover:bg-slate-50">Pieteikties</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Par mani -->
+<section id="par-mani" class="py-20 md:py-28">
+  <div class="max-w-5xl mx-auto px-5 grid md:grid-cols-5 gap-10 items-center">
+    <div class="reveal md:col-span-2">
+      <div class="rounded-3xl bg-gradient-to-br from-amber-100 to-amber-200 overflow-hidden max-w-xs mx-auto">
+        <svg viewBox="-95 -150 190 240" class="w-full h-auto" role="img" aria-label="Anime stila portrets"><use href="#bust" style="color:#3b2a4a"/></svg>
+      </div>
+    </div>
+    <div class="reveal md:col-span-3">
+      <p class="text-accent-dark text-xs font-bold uppercase tracking-widest mb-3">Par mani</p>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-4">Sveiki, esmu [Vārds Uzvārds]</h2>
+      <p class="text-slate-600 text-lg mb-4">Man ir pieredze darbā ar cilvēkiem un klientu apkalpošanā. Esmu attīstījis komunikācijas, pārdošanas, tirgus izpētes un finanšu plānošanas prasmes. (Aizstāj ar savu tekstu.)</p>
+      <blockquote class="border-l-4 border-accent pl-5 italic text-slate-700 text-lg">“Skaidras prioritātes un sakārtota komunikācija palīdz servisu vadīt mierīgāk un nodrošināt labāku viesu pieredzi.”</blockquote>
+      <p class="text-xs text-slate-400 mt-2">Piemēra teksts prototipam. Tā nav īsta klienta atsauksme.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BUJ -->
+<section id="bvj" class="py-20 md:py-28 bg-slate-50">
+  <div class="max-w-3xl mx-auto px-5">
+    <h2 class="reveal text-3xl md:text-4xl font-black tracking-tight mb-8 text-center">Biežāk uzdotie jautājumi</h2>
+    <div class="space-y-3">
+      <details class="reveal bg-white border border-slate-200 rounded-2xl p-5 group">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold list-none">Vai pirmā saruna ir maksas?<span class="chev transition">⌄</span></summary>
+        <p class="mt-3 text-slate-600">Nē. Pirmā 10 minūšu saruna ir bez saistībām, lai abpusēji saprastu, vai un kā varu palīdzēt.</p>
+      </details>
+      <details class="reveal bg-white border border-slate-200 rounded-2xl p-5">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold list-none">Vai strādājat tikai ar lieliem restorāniem?<span class="chev transition">⌄</span></summary>
+        <p class="mt-3 text-slate-600">Nē. Palīdzu gan nelielām kafejnīcām, gan restorāniem ar lielāku komandu. Risinājumu pielāgoju jūsu apjomam.</p>
+      </details>
+      <details class="reveal bg-white border border-slate-200 rounded-2xl p-5">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold list-none">Cik ilgi aizņem pirmie rezultāti?<span class="chev transition">⌄</span></summary>
+        <p class="mt-3 text-slate-600">Dažus uzlabojumus, piemēram, grafiku vai pasūtījumu kārtību, var ieviest dažu nedēļu laikā. Tas atkarīgs no situācijas.</p>
+      </details>
+      <details class="reveal bg-white border border-slate-200 rounded-2xl p-5">
+        <summary class="flex justify-between items-center cursor-pointer font-semibold list-none">Kā notiek konsultācija?<span class="chev transition">⌄</span></summary>
+        <p class="mt-3 text-slate-600">Tiekamies klātienē vai attālināti, kā jums ērtāk. Laiku izvēlaties pieteikuma anketā.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- Pieteikuma anketa -->
+<section id="anketa" class="py-20 md:py-28">
+  <div class="max-w-3xl mx-auto px-5">
+    <div class="reveal text-center mb-10">
+      <p class="text-accent-dark text-xs font-bold uppercase tracking-widest mb-3">Konsultācija</p>
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-4">Pieteikties konsultācijai</h2>
+      <p class="text-slate-600">Aizpildiet anketu un izvēlieties ērtu datumu. Pieteikums nonāks e-pastā, un es apstiprināšu laiku.</p>
+    </div>
+
+    <form id="form" action="https://formspree.io/f/TAVS_FORMSPREE_ID" method="POST" class="reveal bg-white border border-slate-200 rounded-3xl shadow-lg p-6 md:p-10 grid gap-4 md:grid-cols-2">
+      <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off">
+      <input type="hidden" name="_subject" value="Jauns konsultācijas pieteikums (thesolution)">
+
+      <div><label class="block text-sm font-semibold mb-1" for="rest">Restorāna nosaukums *</label><input id="rest" name="restorans" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent"></div>
+      <div><label class="block text-sm font-semibold mb-1" for="adr">Restorāna adrese *</label><input id="adr" name="adrese" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent"></div>
+      <div><label class="block text-sm font-semibold mb-1" for="vards">Jūsu vārds *</label><input id="vards" name="vards" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent"></div>
+      <div><label class="block text-sm font-semibold mb-1" for="amats">Amats</label><input id="amats" name="amats" class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent"></div>
+      <div><label class="block text-sm font-semibold mb-1" for="email">E-pasta adrese *</label><input id="email" type="email" name="email" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent"></div>
+      <div><label class="block text-sm font-semibold mb-1" for="tel">Tālruņa numurs</label><input id="tel" type="tel" name="talrunis" class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent"></div>
+
+      <div><label class="block text-sm font-semibold mb-1" for="datums">Vēlamais datums *</label><input id="datums" type="date" name="datums" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent"></div>
+      <div><label class="block text-sm font-semibold mb-1" for="laiks">Vēlamais laiks *</label>
+        <select id="laiks" name="laiks" required class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent">
+          <option value="">Izvēlieties laiku</option>
+          <option>09:00 – 11:00</option>
+          <option>11:00 – 13:00</option>
+          <option>13:00 – 15:00</option>
+          <option>15:00 – 17:00</option>
+          <option>17:00 – 19:00</option>
+        </select></div>
+
+      <div class="md:col-span-2"><label class="block text-sm font-semibold mb-1" for="joma">Kurā jomā visvairāk nepieciešams atbalsts?</label>
+        <select id="joma" name="joma" class="w-full rounded-xl border border-slate-300 bg-white px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent">
+          <option>Izmaksu kontrole</option>
+          <option>Ēdienkartes analīze</option>
+          <option>Personāla plānošana</option>
+          <option>Piegādes un krājumi</option>
+          <option>Viesu apkalpošana</option>
+          <option>Darba kārtība un apmācība</option>
+          <option>Vairākas jomas</option>
+        </select></div>
+
+      <div class="md:col-span-2"><label class="block text-sm font-semibold mb-1" for="sit">Situācijas raksturojums *</label><textarea id="sit" name="situacija" rows="4" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent"></textarea></div>
+      <div class="md:col-span-2"><label class="block text-sm font-semibold mb-1" for="mers">Ko vēlaties panākt ar konsultācijas palīdzību?</label><textarea id="mers" name="merkis" rows="3" class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:outline-none focus:ring-2 focus:ring-accent"></textarea></div>
+
+      <label class="md:col-span-2 flex items-start gap-3 text-sm text-slate-600"><input type="checkbox" name="piekrisana" required class="mt-1 accent-amber-500"><span>Piekrītu, ka norādītā kontaktinformācija tiek izmantota, lai sazinātos ar mani par šo pieteikumu. *</span></label>
+
+      <div class="md:col-span-2">
+        <button id="btn" type="submit" class="w-full md:w-auto bg-slate-900 text-white font-bold px-10 py-4 rounded-full hover:bg-slate-700 disabled:opacity-60">Nosūtīt pieteikumu</button>
+        <p id="status" role="status" class="mt-3 text-sm font-semibold"></p>
+      </div>
+      <p class="md:col-span-2 text-xs text-slate-400">* Obligāti aizpildāmie lauki.</p>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<!-- Kājene -->
+<footer class="bg-slate-900 text-slate-400">
+  <div class="max-w-6xl mx-auto px-5 py-12 grid gap-8 md:grid-cols-3">
+    <div>
+      <div class="text-xl font-extrabold text-white mb-2">the<span class="text-accent">solution</span></div>
+      <p class="text-sm">Restorānu vadības pakalpojumi: izmaksas, komanda, piegādes un viesu apkalpošana.</p>
+    </div>
+    <div class="text-sm space-y-2">
+      <div class="text-white font-semibold">Navigācija</div>
+      <a class="block hover:text-white" href="#pakalpojumi">Pakalpojumi</a>
+      <a class="block hover:text-white" href="#pakotnes">Pakotnes</a>
+      <a class="block hover:text-white" href="#anketa">Pieteikties</a>
+    </div>
+    <div class="text-sm space-y-2">
+      <div class="text-white font-semibold">Kontakti</div>
+      <p>Vārds Uzvārds</p>
+      <a class="block hover:text-white" href="mailto:tavs@epasts.lv">tavs@epasts.lv</a>
+    </div>
+  </div>
+  <div class="border-t border-white/10 py-5 text-center text-xs">© thesolution · Vārds Uzvārds · Mājaslapas prototips</div>
+</footer>
+
+<script>
+// Mobilā izvēlne
+var menuBtn = document.getElementById('menuBtn');
+var mobileMenu = document.getElementById('mobileMenu');
+menuBtn.addEventListener('click', function(){
+  var open = mobileMenu.classList.toggle('hidden') === false;
